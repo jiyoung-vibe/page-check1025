@@ -37,7 +37,7 @@ h1 { font-size: 36px; margin: 0; color: #0f766e; }
 
 .made span { font-size: 14px; color: #4b5563; word-break: break-all; }
 
-#nickname, #message {
+#message {
   width: 100%;
   box-sizing: border-box;
   padding: 12px;
@@ -73,3 +73,28 @@ h1 { font-size: 36px; margin: 0; color: #0f766e; }
 #guestbook-list .empty { color: #6b7280; }
 
 .notice { margin: 8px 0 0; font-size: 14px; color: #b91c1c; }
+
+.auth-bar { margin-bottom: 8px; }
+
+#login, #logout {
+  padding: 10px 16px;
+  font-size: 15px;
+  color: #0f766e;
+  background: #ffffff;
+  border: 1px solid #0f766e;
+  border-radius: 8px;
+}
+
+#logout { margin-left: 8px; padding: 4px 10px; font-size: 13px; }
+
+.hint { margin: 0 0 8px; font-size: 14px; color: #6b7280; }
+
+#guestbook-list .del {
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #b91c1c;
+  background: #ffffff;
+  border: 1px solid #b91c1c;
+  border-radius: 6px;
+}

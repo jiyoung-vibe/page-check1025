@@ -22,15 +22,25 @@
 
   <section class="card">
     <h2>방명록</h2>
-    <input id="nickname" placeholder="별명" maxlength="20">
-    <textarea id="message" placeholder="한마디"></textarea>
-    <button id="leave" type="button">남기기</button>
+    <div id="auth-bar" class="auth-bar">
+      <button id="login" type="button">구글로 로그인</button>
+      <span id="user-box" hidden>
+        <strong id="user-name"></strong>님
+        <button id="logout" type="button" class="small">로그아웃</button>
+      </span>
+    </div>
+    <p id="login-hint" class="hint">로그인하면 방명록을 남길 수 있어요.</p>
+    <form id="write-box" hidden>
+      <textarea id="message" placeholder="한마디" maxlength="500"></textarea>
+      <button id="leave" type="button">남기기</button>
+    </form>
     <p id="notice" class="notice" hidden></p>
     <ul id="guestbook-list">
       <li class="empty">불러오는 중…</li>
     </ul>
   </section>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
