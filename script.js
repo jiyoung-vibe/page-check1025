@@ -81,39 +81,3 @@ async function leave() {
 
 document.querySelector('#leave').addEventListener('click', leave);
 loadList();
-
-// 임시 「지우기 시험」: 맨 위 글을 공개 키로 지워 보고 결과를 그대로 보여 준다
-async function deleteTest() {
-  const out = document.querySelector('#delete-result');
-  const button = document.querySelector('#delete-test');
-  button.disabled = true;
-  out.textContent = '시험 중…';
-  try {
-    // 1) 맨 위(최신) 글의 id를 읽는다
-    const top = await fetch(TABLE_URL + '?select=id&order=created_at.desc&limit=1', { headers: HEADERS });
-    const topRows = await top.json();
-    if (!top.ok || topRows.length === 0) {
-      out.textContent = '결과: 실패\n이유: 맨 위 글을 찾지 못했습니다 (상태 ' + top.status + ')\n지워진 줄 수: 0';
-      return;
-    }
-    // 2) 그 id로 지우기 요청을 보낸다 (지워진 줄을 돌려 달라고 해서 줄 수를 센다)
-    const res = await fetch(TABLE_URL + '?id=eq.' + topRows[0].id, {
-      method: 'DELETE',
-      headers: { ...HEADERS, Prefer: 'return=representation' },
-    });
-    const bodyText = await res.text();
-    let deleted = 0;
-    try { deleted = JSON.parse(bodyText).length; } catch (e) { /* 오류 본문이면 0줄 */ }
-    out.textContent = (res.ok ? '결과: 성공 (요청이 받아들여짐)' : '결과: 실패') +
-      '\n상태: ' + res.status + ' ' + res.statusText +
-      (res.ok ? '' : '\n이유: ' + bodyText) +
-      '\n지워진 줄 수: ' + deleted;
-    await loadList();
-  } catch (error) {
-    out.textContent = '결과: 실패\n이유: ' + error.message + '\n지워진 줄 수: 0';
-  } finally {
-    button.disabled = false;
-  }
-}
-
-document.querySelector('#delete-test').addEventListener('click', deleteTest);

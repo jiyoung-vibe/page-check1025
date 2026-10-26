@@ -73,5 +73,3 @@ h1 { font-size: 36px; margin: 0; color: #0f766e; }
 #guestbook-list .empty { color: #6b7280; }
 
 .notice { margin: 8px 0 0; font-size: 14px; color: #b91c1c; }
-
-#delete-result { white-space: pre-wrap; font-size: 0.85rem; }

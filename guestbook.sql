@@ -20,8 +20,3 @@ create policy "누구나 쓰기" on guestbook for insert with check (true);
 -- 공개 키(anon)로 들어온 사람에게 읽기·쓰기를 허락한다.
 -- 새 프로젝트는 SQL로 만든 표를 공개 키에 자동으로 열지 않는다. 이 줄이 없으면 401 오류가 난다.
 grant select, insert on table guestbook to anon, authenticated;
-
--- [추가] 지우기 허락 (시험용). 이미 표를 만든 프로젝트에서는 아래 두 줄만 SQL 편집기에서 실행한다.
--- 주의: 공개 키를 가진 누구나 모든 글을 지울 수 있게 된다.
-create policy "누구나 지우기" on guestbook for delete using (true);
-grant delete on table guestbook to anon, authenticated;
